@@ -3,10 +3,7 @@ body {
 	font-family: monospace;
 	background-image: url('../images/starwarsbg.jpg');
 	color: #fff;
-}
-
-.clear {
-	clear: both;
+	margin-left: 20px;
 }
 
 h1,
@@ -34,6 +31,7 @@ h3 {
 	position: relative;
 	background: #fff;
 	color: #000;
+	cursor: pointer;
 }
 
 #characters img {
@@ -42,7 +40,7 @@ h3 {
 
 .xp {
 	position: absolute;
-	bottom: 0;
+	bottom: 5px;
 	width: 100%;
 	text-align: center;
 }
