@@ -8,6 +8,7 @@ $(document).ready(function(){
 			hasCharacter = true;
 			$(this).remove();
 			$('#selectedCharacter').append(this);
+			$('#enemiesAvailable').append($('#characters div'));
 		}
 	});
 
