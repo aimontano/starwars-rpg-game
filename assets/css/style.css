@@ -20,7 +20,7 @@ h3 {
 	font-size: 2em;
 }
 
-#characters div {
+.character {
 	width: 130px;
 	height: 130px;
 	overflow: hidden;
@@ -34,7 +34,7 @@ h3 {
 	cursor: pointer;
 }
 
-#characters img {
+.character img {
 	width: 100%;
 }
 
