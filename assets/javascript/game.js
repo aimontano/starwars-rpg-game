@@ -1,21 +1,18 @@
+$(document).ready(function(){
 	// boolean - character has not been selected
 	let hasAttacker = false;
 	// boolean - defender has not been selected
 	let hasDefender = false;
-
 	let attacker, defender, attackerName, defenderName, attackerHealth, defenderHealth;
 	let  AttackerObj, DefenderObj;
-
-	let attackPoints, defensePoints, attackerAttackPoints, defenderCounterPoints;
-
-$(document).ready(function(){
+	let attackPoints, defensePoints, attackerAttackPoints, defenderCounterPoints;	
 
 	const getPoints = (max) => {
 		return Math.floor(Math.random() * max) + 1;
 	};
 
-	attackPoints = getPoints(25);
-	defensePoints = getPoints(20);
+	attackPoints = getPoints(20);
+	defensePoints = getPoints(30);
 
 	// Character Constructor
 	let Character = function (name, healthPoints, attackPoints, counterPoints) {
@@ -23,6 +20,11 @@ $(document).ready(function(){
 		this.healthPoints = healthPoints;
 		this.attackPoints = attackPoints;
 		this.counterPoints = counterPoints;
+	};
+
+	const reset = () => {
+		hasDefender = false;
+		defensePoints = getPoints(30);
 	};
 
 	$('#characters div').click(function(){
@@ -47,7 +49,7 @@ $(document).ready(function(){
 			$('#enemiesAvailable div').css('color', 'white');
 
 			attackerName = attacker.firstElementChild.textContent;
-			attackerHealth = attacker.lastChild.previousElementSibling.textContent;
+			attackerHealth = parseInt(attacker.lastElementChild.textContent);
 			attackerAttackPoints = attackPoints;
 			AttackerObj = new Character(attackerName, attackerHealth, attackerAttackPoints, null);
 		} else if(!hasDefender){ // if it doesn't have a defender
@@ -63,13 +65,11 @@ $(document).ready(function(){
 			$('#defender div').css('background', 'black');
 
 			defenderName = defender.firstElementChild.textContent;
-			defenderHealth = defender.lastChild.previousElementSibling.textContent;
+			defenderHealth = parseInt(defender.lastElementChild.textContent);
 			defenderCounterPoints = defensePoints;
 			DefenderObj = new Character(defenderName, defenderHealth, null, defenderCounterPoints);	
 		}
 	});
-
-
 
 	$('#attackBtn').click(function(){
 
@@ -77,17 +77,23 @@ $(document).ready(function(){
 
 			$('#message').html("You attacked " + DefenderObj.name + " for " + attackerAttackPoints + " damage. <br>" + DefenderObj.name + " attacked you back for " + defenderCounterPoints + " damage." );
 
-			console.log("Attacker points: " + attackerAttackPoints);
-
 			attackerHealth -= defenderCounterPoints;
 			defenderHealth -= attackerAttackPoints;
 
 			attackerAttackPoints += attackPoints;
-			defenderCounterPoints += defensePoints;
 
+			if(defenderHealth <= 0) {
+				defender.remove();
+				defender = '';
+				reset();
 
-			console.log(attackerHealth)
-			console.log(defenderHealth)
+			}
+			if(attacker <= 0) {
+				$('#message').text("YOU LOST");
+			}
+
+			$(attacker.lastElementChild).text(attackerHealth);
+			$(defender.lastElementChild).text(defenderHealth);
 
 
 		} else {
