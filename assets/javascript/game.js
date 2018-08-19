@@ -22,6 +22,7 @@ $(document).ready(function(){
 		$('#message').text('');
 		if(!hasAttacker){
 			hasAttacker = true;
+			attacker = this;
 			charAvailable--;
 			$(this).remove();
 			$('#selectedCharacter').append(this);
@@ -51,6 +52,7 @@ $(document).ready(function(){
 			attackerHealth -= defenderCounterPoints;
 			defenderHealth -= attackerAttackPoints;
 			attackerAttackPoints += attackPoints;
+			console.log(charAvailable);
 			if(attackerHealth <= 0) {
 				hasAttacker = false;
 				hasLost = true;
