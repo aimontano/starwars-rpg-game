@@ -22,8 +22,6 @@ $(document).ready(function(){
 		$('#message').text('');
 		if(!hasAttacker){
 			hasAttacker = true;
-			attacker = this;
-			console.log(attacker);
 			charAvailable--;
 			$(this).remove();
 			$('#selectedCharacter').append(this);
@@ -37,7 +35,6 @@ $(document).ready(function(){
 		} else if(!hasDefender){ // if it doesn't have a defender
 			hasDefender = true; 
 			defender = this;
-			console.log(defender);
 			charAvailable--;
 			$(this).remove();
 			$('#defender h3').after($(this));
@@ -54,7 +51,6 @@ $(document).ready(function(){
 			attackerHealth -= defenderCounterPoints;
 			defenderHealth -= attackerAttackPoints;
 			attackerAttackPoints += attackPoints;
-			console.log(charAvailable);
 			if(attackerHealth <= 0) {
 				hasAttacker = false;
 				hasLost = true;
@@ -78,6 +74,5 @@ $(document).ready(function(){
 		}else if(!hasDefender || !hasAttacker){
 			$('#message').text("You must select a character and a defender");
 		}
-		console.log(charAvailable);
 	});
 });
