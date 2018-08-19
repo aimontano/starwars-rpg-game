@@ -52,7 +52,6 @@ $(document).ready(function(){
 			attackerHealth -= defenderCounterPoints;
 			defenderHealth -= attackerAttackPoints;
 			attackerAttackPoints += attackPoints;
-			console.log(charAvailable);
 			if(attackerHealth <= 0) {
 				hasAttacker = false;
 				hasLost = true;
